@@ -7,8 +7,6 @@ import java.util.List;
 @Entity
 public class Hotel {
 
-    //@Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private short id;
@@ -17,19 +15,18 @@ public class Hotel {
     private String postalCode;
     private String city;
     private StarRating starRating;
-
     @ManyToMany
-    private List<Facilities> facilities = new ArrayList<>();
-
-    @ManyToMany
+    private List<HotelFacilities> hotelFacilities = new ArrayList<>();
+    @OneToMany
     private List<Room> rooms = new ArrayList<>();
 
 
-    public int obliczLiczbeMiejsc(){ //wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie miejsc
+
+    public int obliczLiczbeMiejsc(){ //TODO wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie miejsc
         return 0;
     }
 
-    public int obliczLiczbeWolnychMiejsc(){ //wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie wolnych miejsc
+    public int obliczLiczbeWolnychMiejsc(){ //TODO wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie wolnych miejsc
         return 0;
     }
 
