@@ -17,10 +17,18 @@ public class Hotel {
     private StarRating starRating;
     @ManyToMany
     private List<HotelFacilities> hotelFacilities = new ArrayList<>();
-    @OneToMany
-    private List<Room> rooms = new ArrayList<>();
+    @OneToMany(mappedBy = "hotel")
+    private List<Room> rooms = new ArrayList<Room>();
 
-
+    public Hotel(String name, String street, String postalCode, String city, StarRating starRating, List<HotelFacilities> hotelFacilities, List<Room> rooms) {
+        this.name = name;
+        this.street = street;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.starRating = starRating;
+        this.hotelFacilities = hotelFacilities;
+        this.rooms = rooms;
+    }
 
     public int obliczLiczbeMiejsc(){ //TODO wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie miejsc
         return 0;
