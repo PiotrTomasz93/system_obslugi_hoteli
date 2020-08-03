@@ -1,5 +1,6 @@
 package org.tomaszpiotr;
 
+
 public enum HotelFacilities {
     WIFI,
     RESTAURANT,

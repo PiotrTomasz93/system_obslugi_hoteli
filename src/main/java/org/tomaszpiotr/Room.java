@@ -14,7 +14,7 @@ public class Room {
     //private short hotelId;
     private short numberOfBeds;
     private boolean isFree;
-    private List<RoomFacilities> roomFacilities;
+//    private List<RoomFacilities> roomFacilities;
     private double price;
 
 

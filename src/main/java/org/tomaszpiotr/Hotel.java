@@ -15,18 +15,18 @@ public class Hotel {
     private String postalCode;
     private String city;
     private StarRating starRating;
-    @ManyToMany
-    private List<HotelFacilities> hotelFacilities = new ArrayList<>();
+/*    @ManyToMany
+    private List<HotelFacilities> hotelFacilities = new ArrayList<>();*/
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms = new ArrayList<Room>();
 
-    public Hotel(String name, String street, String postalCode, String city, StarRating starRating, List<HotelFacilities> hotelFacilities, List<Room> rooms) {
+    public Hotel(String name, String street, String postalCode, String city, StarRating starRating, List<Room> rooms) {
         this.name = name;
         this.street = street;
         this.postalCode = postalCode;
         this.city = city;
         this.starRating = starRating;
-        this.hotelFacilities = hotelFacilities;
+//        this.hotelFacilities = hotelFacilities;
         this.rooms = rooms;
     }
 
