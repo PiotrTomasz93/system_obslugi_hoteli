@@ -1,16 +1,28 @@
 package org.tomaszpiotr;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Hotel {
+
+    //@Id
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private short id;
-    private String nazwa;
-    private String ulica;
-    private String kodPocztowy;
-    private String miasto;
-    private Gwiazdki liczbaGwiazdek;
-    private List<Udogodnienia> udogodnienia = new ArrayList<>();
+    private String name;
+    private String street;
+    private String postalCode;
+    private String city;
+    private StarRating starRating;
+
+    @ManyToMany
+    private List<Facilities> facilities = new ArrayList<>();
+
+    @ManyToMany
+    private List<Room> rooms = new ArrayList<>();
 
 
     public int obliczLiczbeMiejsc(){ //wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie miejsc

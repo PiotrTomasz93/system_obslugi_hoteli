@@ -1,4 +1,4 @@
 package org.tomaszpiotr;
 
-public class Udogodnienia {
+public class Room {
 }
