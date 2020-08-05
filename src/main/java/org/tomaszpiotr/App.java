@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class App
 {
@@ -15,6 +16,20 @@ public class App
         System.out.println("Witamy w aplikacji HotelsView. \nWybierz opcję, wpisz odpowiedni numer i zatwierdź klawiszem Enter.");
         System.out.println("1. Rezerwacja pokoju");
         System.out.println("2. Zalogowanie się do systemu.");
+
+        Scanner scanner = new Scanner(System.in);
+        int value = scanner.nextInt();
+        while (value != 1 && value != 2){
+            System.out.println("Podano nieprawidłową wartość. Wybierz ponownie");
+            System.out.println(value);
+            value = scanner.nextInt();
+        }
+        if (value == 1) {
+            Reservation reservation = new Reservation();
+            System.out.println("Podaj nazwę hotelu, w którym chcesz zgłosić rezerwację");
+
+
+        }
 
 
         List<HotelFacilities> fc = Arrays.asList(HotelFacilities.PARKING, HotelFacilities.RESTAURANT);
