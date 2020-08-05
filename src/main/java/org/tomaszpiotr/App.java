@@ -27,6 +27,11 @@ public class App
         if (value == 1) {
             Reservation reservation = new Reservation();
             System.out.println("Podaj nazwę hotelu, w którym chcesz zgłosić rezerwację");
+            String hotelName = scanner.nextLine();
+            while (Reservation.checkHotelName(hotelName) == false){
+                System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
+                hotelName = scanner.nextLine();
+            }
 
 
         }
