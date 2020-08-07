@@ -18,22 +18,31 @@ public class App
         System.out.println("2. Zalogowanie się do systemu.");
 
         Scanner scanner = new Scanner(System.in);
-        int value = scanner.nextInt();
-        while (value != 1 && value != 2){
+        String value = scanner.nextLine();
+
+        while (!value.equals("1") && !value.equals("2")){
             System.out.println("Podano nieprawidłową wartość. Wybierz ponownie");
-            System.out.println(value);
-            value = scanner.nextInt();
+            value = scanner.nextLine();
         }
-        if (value == 1) {
+
+        if (value.equals("1")) {
             Reservation reservation = new Reservation();
             System.out.println("Podaj nazwę hotelu, w którym chcesz zgłosić rezerwację");
+            System.out.println("teraz wpisz inta");
+            int test = scanner.nextInt();
             String hotelName = scanner.nextLine();
             while (Reservation.checkHotelName(hotelName) == false){
                 System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
                 hotelName = scanner.nextLine();
             }
-
-
+        }
+        else{
+            SystemService systemService = new SystemService();
+            System.out.println("Podaj hasło");
+            String haslo = scanner.nextLine();
+            if (haslo == systemService.getPassword()){
+                
+            }
         }
 
 

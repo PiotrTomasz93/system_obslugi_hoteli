@@ -10,6 +10,7 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private short id;
+    @Column(unique = true)
     private String name;
     private String street;
     private String postalCode;
