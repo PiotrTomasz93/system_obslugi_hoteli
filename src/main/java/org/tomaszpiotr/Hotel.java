@@ -18,7 +18,7 @@ public class Hotel {
     private StarRating starRating;
 /*    @ManyToMany
     private List<HotelFacilities> hotelFacilities = new ArrayList<>();*/
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany
     private List<Room> rooms = new ArrayList<Room>();
 
     public Hotel(String name, String street, String postalCode, String city, StarRating starRating, List<Room> rooms) {

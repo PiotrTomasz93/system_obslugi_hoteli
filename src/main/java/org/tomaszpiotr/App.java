@@ -25,11 +25,11 @@ public class App
             value = scanner.nextLine();
         }
 
+/*
         if (value.equals("1")) {
             Reservation reservation = new Reservation();
-            System.out.println("Podaj nazwę hotelu, w którym chcesz zgłosić rezerwację");
-            System.out.println("teraz wpisz inta");
-            int test = scanner.nextInt();
+
+            System.out.println("Wybierz hotel, w którym chcesz zgłosić rezerwację");
             String hotelName = scanner.nextLine();
             while (Reservation.checkHotelName(hotelName) == false){
                 System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
@@ -44,10 +44,15 @@ public class App
                 
             }
         }
+*/
 
 
         List<HotelFacilities> fc = Arrays.asList(HotelFacilities.PARKING, HotelFacilities.RESTAURANT);
         Hotel hotel1 = new Hotel("Fenix", "Pomorska 16", "02-038", "Warszawa", StarRating.THREESTARS, null );
+        Hotel hotel2 = new Hotel("Novotel", "Ogrodowa 29", "02-207", "Warszawa", StarRating.FIVESTARS, null );
+        Hotel hotel3 = new Hotel("Hilton", "Kwiatowa 14", "77-420", "Szczecin", StarRating.TWOSTARS, null );
+        Hotel hotel4 = new Hotel("Amber", "Wawelska 84", "45-815", "Gdańsk", StarRating.THREESTARS, null );
+
 
         Configuration con = new Configuration().configure().addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class);
 
@@ -56,6 +61,9 @@ public class App
 
         Transaction tx = session.beginTransaction();
         session.save(hotel1);
+        session.save(hotel2);
+        session.save(hotel3);
+        session.save(hotel4);
 
         tx.commit();
 

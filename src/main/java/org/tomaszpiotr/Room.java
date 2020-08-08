@@ -17,8 +17,11 @@ public class Room {
 //    private List<RoomFacilities> roomFacilities;
     private double price;
 
-
-
-
-
+    public Room(short id, Hotel hotel, short numberOfBeds, boolean isFree, double price) {
+        this.id = id;
+        this.hotel = hotel;
+        this.numberOfBeds = numberOfBeds;
+        this.isFree = isFree;
+        this.price = price;
+    }
 }
