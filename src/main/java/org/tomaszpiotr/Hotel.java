@@ -21,6 +21,9 @@ public class Hotel {
     @OneToMany
     private List<Room> rooms = new ArrayList<Room>();
 
+    public Hotel(){
+    }
+
     public Hotel(String name, String street, String postalCode, String city, StarRating starRating, List<Room> rooms) {
         this.name = name;
         this.street = street;

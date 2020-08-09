@@ -40,10 +40,16 @@ public class App
 
             System.out.println("Wybierz hotel, w którym chcesz zgłosić rezerwację");
             String hotelName = scanner.nextLine();
-            while (Reservation.checkHotelName(hotelName, session) == false){
+            while (reservation.checkHotelName(hotelName, session) == false){
                 System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
                 hotelName = scanner.nextLine();
             }
+            if (reservation.checkFreeRooms(hotelName, session)){
+
+            }
+
+
+
         }
         else{
             SystemService systemService = new SystemService();
