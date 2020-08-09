@@ -87,9 +87,18 @@ public class Hotel {
         this.rooms = rooms;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", starRating=" + starRating +
+                ", rooms=" + rooms +
+                '}';
+    }
 
     public int obliczLiczbeMiejsc(){ //TODO wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie miejsc
         return 0;

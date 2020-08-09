@@ -24,10 +24,10 @@ public class DataLoader { //TODO zrobić funkcje które będą automatycznie zap
         List<Room> roomList4 = new ArrayList<>();
         List<Room> roomList5 = new ArrayList<>();
         Hotel hotel1 = new Hotel("Fenix", "Pomorska 16", "02-038", "Warszawa", StarRating.THREESTARS, roomList1);
-        Hotel hotel2 = new Hotel("Novotel", "Ogrodowa 29", "02-207", "Warszawa", StarRating.FIVESTARS, roomList2 );
+        Hotel hotel2 = new Hotel("Novotel", "Kościuszki 2", "02-207", "Warszawa", StarRating.FIVESTARS, roomList2 );
         Hotel hotel3 = new Hotel("Hilton", "Kwiatowa 14", "77-420", "Szczecin", StarRating.TWOSTARS, roomList3 );
 //        Hotel hotel4 = new Hotel("Amber", "Wawelska 84", "45-815", "Gdańsk", StarRating.THREESTARS, roomList4 );
-//        Hotel hotel5 = new Hotel("Radisson", "Kościuszki 2", "23-015", "Kraków", StarRating.THREESTARS, roomList5 );
+//        Hotel hotel5 = new Hotel("Radisson", "Ogrodowa 29", "23-015", "Kraków", StarRating.THREESTARS, roomList5 );
 
 //        List<Hotel> hotels = Arrays.asList(hotel1, hotel2, hotel3, hotel4, hotel5);
 
