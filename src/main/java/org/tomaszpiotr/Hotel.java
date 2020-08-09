@@ -31,6 +31,66 @@ public class Hotel {
         this.rooms = rooms;
     }
 
+    public short getId() {
+        return id;
+    }
+
+    public void setId(short id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public StarRating getStarRating() {
+        return starRating;
+    }
+
+    public void setStarRating(StarRating starRating) {
+        this.starRating = starRating;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+
+
+
+
     public int obliczLiczbeMiejsc(){ //TODO wyciągnięcie z bazy wszystkich pokoi z danego hotelu i zsumowanie miejsc
         return 0;
     }
