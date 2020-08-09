@@ -7,11 +7,10 @@ import java.util.List;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
     @ManyToOne
     private Hotel hotel;
-    //private short hotelId;
     private int numberOfBeds;
     private boolean isFree;
 //    private List<RoomFacilities> roomFacilities;

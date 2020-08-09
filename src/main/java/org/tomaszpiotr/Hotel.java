@@ -8,7 +8,7 @@ import java.util.List;
 public class Hotel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
     @Column(unique = true)
     private String name;
