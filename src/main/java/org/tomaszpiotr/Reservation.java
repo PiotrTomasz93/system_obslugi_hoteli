@@ -9,12 +9,20 @@ import java.util.List;
 
 public class Reservation {
 
-    Hotel hotel;
     int numberOfPeople;
     LocalDate dateFrom;
     LocalDate dateTo;
     Room room;
 
+
+    public void printHotels(Session session){
+        Query query = session.createQuery("select name, city from Hotel");
+        List<Object[]> hotels = (List<Object[]>) query.list();
+        System.out.println("nazwa hotelu  (miasto)");
+        for (Object[] item: hotels){
+            System.out.println(item[0] + " : " + item[1]);
+        }
+    }
 
     public boolean checkHotelName(String hotelName, Session session){
         Query query = session.createQuery("select name from Hotel");
@@ -36,7 +44,20 @@ public class Reservation {
             }
         }
         return false;
+    }
 
+    public void printFreeRooms(String hotelName, Session session) {
+        Query query = session.createQuery("select rooms from Hotel where name = :x");
+        query.setParameter("x", hotelName);
+        List<Room> rooms = query.list();
+        for (Room item: rooms){
+            System.out.println(item);
+        }
+    }
 
+    public void setRoom(String id, Session session){
+        Query query = session.createQuery("from Room where id = :x");
+        query.setParameter("x", Short.valueOf(id));
+        this.room = (Room) query.uniqueResult();
     }
 }

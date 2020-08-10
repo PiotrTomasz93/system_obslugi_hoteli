@@ -38,18 +38,21 @@ public class App
         if (value.equals("1")) {
             Reservation reservation = new Reservation();
 
-            System.out.println("Wybierz hotel, w którym chcesz zgłosić rezerwację");
+            System.out.println("Wybierz hotel, w którym chcesz zgłosić rezerwację (wpisz nazwę)");
+            reservation.printHotels(session);
             String hotelName = scanner.nextLine();
             while (reservation.checkHotelName(hotelName, session) == false){
                 System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
                 hotelName = scanner.nextLine();
             }
             if (reservation.checkFreeRooms(hotelName, session)){
+                System.out.println("Wybierz pokój (wpisz id)");
+                reservation.printFreeRooms(hotelName, session);
+                String roomId = scanner.nextLine();
+                reservation.setRoom(roomId, session);
+                System.out.println(reservation.room.getPrice());
 
             }
-
-
-
         }
         else{
             SystemService systemService = new SystemService();
