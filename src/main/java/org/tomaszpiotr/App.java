@@ -51,7 +51,6 @@ public class App
                 String roomId = scanner.nextLine();
                 reservation.setRoom(roomId, session);
                 System.out.println(reservation.room.getPrice());
-
             }
         }
         else{
@@ -59,7 +58,6 @@ public class App
             System.out.println("Podaj hasło");
             String haslo = scanner.nextLine();
             if (haslo == systemService.getPassword()){
-
             }
         }
         //List<HotelFacilities> fc = Arrays.asList(HotelFacilities.PARKING, HotelFacilities.RESTAURANT);
