@@ -46,7 +46,7 @@ public class Reservation {
         return false;
     }
 
-    public void printFreeRooms(String hotelName, Session session) { 
+    public void printFreeRooms(String hotelName, Session session) {
         Query query = session.createQuery("select rooms from Hotel where name = :x");
         query.setParameter("x", hotelName);
         List<Room> rooms = query.list();
@@ -62,15 +62,17 @@ public class Reservation {
         this.room = (Room) query.uniqueResult();
     }
 
-//    public boolean checkRoomId(String hotelName, String id, Session session){
-//        Query query = session.createQuery("select rooms from Hotel where name = :x");
-//        query.setParameter("x", hotelName);
-//        List<Room> rooms = query.list();
-//
-//        rooms.stream().filter(r -> r.getId()).
-//        if (hotels.contains(hotelName)) {
-//            return true;
-//        }
-//        return false;
-//    }
+    public boolean checkRoomId(String hotelName, String id, Session session){
+        Query query = session.createQuery("select rooms from Hotel where name = :x");
+        query.setParameter("x", hotelName);
+        List<Room> rooms = query.list();
+        rooms = rooms.stream().filter(r -> r.isFree()).collect(Collectors.toList());
+        
+        for(Room item: rooms){
+            if (item.getId() == Short.valueOf(id)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

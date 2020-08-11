@@ -49,6 +49,10 @@ public class App
                 System.out.println("Wybierz pokój (wpisz id)");
                 reservation.printFreeRooms(hotelName, session);
                 String roomId = scanner.nextLine();
+                while (!reservation.checkRoomId(hotelName, roomId, session)){
+                    System.out.println("Podano nieprawidłowy id pokoju. Wpisz ponownie");
+                    roomId = scanner.nextLine();
+                }
                 reservation.setRoom(roomId, session);
                 System.out.println(reservation.room.getPrice());
             }
