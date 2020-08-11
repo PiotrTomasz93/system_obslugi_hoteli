@@ -46,17 +46,21 @@ public class App
                 hotelName = scanner.nextLine();
             }
             if (reservation.checkFreeRooms(hotelName, session)){
-                System.out.println("Wybierz pokój (wpisz id)");
+                System.out.println("Wybierz pokój z obecnie dostępnych (wpisz id)");
                 reservation.printFreeRooms(hotelName, session);
                 String roomId = scanner.nextLine();
                 while (!reservation.checkRoomId(hotelName, roomId, session)){
-                    System.out.println("Podano nieprawidłowy id pokoju. Wpisz ponownie");
+                    System.out.println("Ten pokój nie jest dostępny. Wpisz ponownie");
                     roomId = scanner.nextLine();
                 }
                 reservation.setRoom(roomId, session);
-                System.out.println(reservation.room.getPrice());
+                System.out.println("Wybrano pokój: " + reservation.getRoom().toString());
             }
         }
+
+
+
+
         else{
             SystemService systemService = new SystemService();
             System.out.println("Podaj hasło");

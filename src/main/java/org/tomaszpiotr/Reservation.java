@@ -14,6 +14,9 @@ public class Reservation {
     LocalDate dateTo;
     Room room;
 
+    public Room getRoom() {
+        return room;
+    }
 
     public void printHotels(Session session){
         Query query = session.createQuery("select name, city from Hotel");
