@@ -55,6 +55,11 @@ public class App
                 }
                 reservation.setRoom(roomId, session);
                 System.out.println("Wybrano pokój: " + reservation.getRoom().toString());
+
+                reservation.updateRoomAvailability(roomId, session);
+                tx.commit();
+            } else {
+                System.out.println("W hotelu " + hotelName + " nie ma wolnych miejsc.");
             }
         }
 

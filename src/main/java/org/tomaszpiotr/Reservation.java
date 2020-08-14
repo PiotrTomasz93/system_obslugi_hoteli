@@ -78,4 +78,15 @@ public class Reservation {
         }
         return false;
     }
+
+    public void updateRoomAvailability(String id, Session session){
+        Room room = session.load(Room.class, Short.valueOf(id));
+        if (room.isFree()){
+            room.setFree(false);
+        } else {
+            room.setFree(true);
+        }
+        session.update(room);
+
+    }
 }
