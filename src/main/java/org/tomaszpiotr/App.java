@@ -79,7 +79,7 @@ public class App
         
 
 
-//        DataLoader dataLoader = new DataLoader(session, tx);
+//        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
 //        dataLoader.loadData();
 
         
