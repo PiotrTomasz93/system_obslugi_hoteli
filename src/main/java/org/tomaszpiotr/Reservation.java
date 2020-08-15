@@ -3,12 +3,20 @@ package org.tomaszpiotr;
 import org.hibernate.Session;
 import org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl;
 import org.hibernate.query.Query;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Entity
 public class Reservation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private short id;
+
+    @OneToOne
     Room room;
     int numberOfPeople;
     LocalDate dateFrom;
@@ -93,4 +101,13 @@ public class Reservation {
     public void setNumberOfPeople(int numberOfPeople){
         this.numberOfPeople = numberOfPeople;
     }
+
+    public void setDateFrom(LocalDate dateFrom){
+        this.dateFrom = dateFrom;
+    }
+
+    public void setDateTo(LocalDate dateTo){
+        this.dateTo = dateTo;
+    }
+
 }

@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ public class App
 
         checkRoomReservations();
 
-        Configuration con = new Configuration().configure().addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class).addAnnotatedClass(Reservation.class);
 
         SessionFactory sf = con.buildSessionFactory();
         Session session =sf.openSession();
@@ -59,20 +60,40 @@ public class App
                 System.out.println("Wybrano pokój: " + reservation.getRoom().toString());
 
                 reservation.updateRoomAvailability(roomId, session);
-                tx.commit();
 
                 System.out.println("Podaj liczbę osób:");
-                int numberOfPeople = scanner.nextInt();
+                int numberOfPeople = Integer.valueOf(scanner.nextLine());
                 while (numberOfPeople > session.load(Room.class, Short.valueOf(roomId)).getNumberOfBeds()){
                     System.out.println("Liczba osób przekracza liczbę miejsc w pokoju. Wpisz ponownie:");
                     numberOfPeople = scanner.nextInt();
                 }
-
                 reservation.setNumberOfPeople(numberOfPeople);
+                System.out.println("Dzisiaj jest " + LocalDate.now());
+
+                System.out.println("Podaj datę zameldowania: (w formacie YYYY-MM-DD)");
+                String checkInText = scanner.nextLine();
+                LocalDate dateFrom = LocalDate.parse(checkInText);
+
+                System.out.println("Podaj datę wymeldowania: (w formacie YYYY-MM-DD)");
+                String checkOutText = scanner.nextLine();
+                LocalDate dateTo = LocalDate.parse(checkOutText);
+
+                reservation.setDateFrom(dateFrom);
+                reservation.setDateTo(dateTo);
+
+                session.save(reservation);
+                tx.commit();
+
+                System.out.println("Data zameldowania: " + dateFrom);
+                System.out.println("Data wymeldowania: " + dateTo);
+
+                System.out.println("Rezerwacja potwierdzona. Koszt noclegu wyniesie "); //TODO obliczyć koszt noclegu
+
 
             } else {
                 System.out.println("W hotelu " + hotelName + " nie ma wolnych miejsc.");
             }
+
         }
 
 
@@ -94,7 +115,7 @@ public class App
 //        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
 //        dataLoader.loadData();
 
-        
+
 
         System.out.println("\n\n                   KONIEC");
     }
