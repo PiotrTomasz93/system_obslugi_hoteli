@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HotelService {
 
@@ -22,9 +23,9 @@ public class HotelService {
     }
 
     public static boolean checkHotelName(String hotelName, Session session){
-        Query query = session.createQuery("select name from Hotel");
-        List<String> hotels = query.list();
-        if (hotels.contains(hotelName)) {
+        List<Hotel> hotels = HotelRepository.getAllHotels(session);
+        List<String> hotelsNames = hotels.stream().map(e->e.getName()).collect(Collectors.toList());
+        if (hotelsNames.contains(hotelName)) {
             return true;
         }
         return false;
