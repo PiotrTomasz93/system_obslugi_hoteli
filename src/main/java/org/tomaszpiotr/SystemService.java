@@ -1,7 +1,7 @@
 package org.tomaszpiotr;
 
 public class SystemService {
-    private final String password = "abc123";
+    private final String password = "123";
 
     public String getPassword() {
         return password;

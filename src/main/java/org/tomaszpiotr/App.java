@@ -104,6 +104,7 @@ public class App
             System.out.println("Podaj hasło");
             String haslo = scanner.nextLine();
             if (haslo == systemService.getPassword()){
+                systemService.showOptions();
             }
         }
         //List<HotelFacilities> fc = Arrays.asList(HotelFacilities.PARKING, HotelFacilities.RESTAURANT);
