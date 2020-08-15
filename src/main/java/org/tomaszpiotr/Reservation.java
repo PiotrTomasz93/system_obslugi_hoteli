@@ -29,23 +29,7 @@ public class Reservation {
         return room;
     }
 
-    public void printHotels(Session session){
-        Query query = session.createQuery("select name, city from Hotel");
-        List<Object[]> hotels = (List<Object[]>) query.list();
-        System.out.println("nazwa hotelu (miasto)");
-        for (Object[] item: hotels){
-            System.out.println(item[0] + " (" + item[1] + ")");
-        }
-    }
 
-    public boolean checkHotelName(String hotelName, Session session){
-        Query query = session.createQuery("select name from Hotel");
-        List<String> hotels = query.list();
-        if (hotels.contains(hotelName)) {
-            return true;
-        }
-        return false;
-    }
 
     public boolean checkFreeRooms(String hotelName, Session session){
         Query query = session.createQuery("select rooms from Hotel where name = :x");

@@ -14,9 +14,10 @@ public class ReservationFactory {
         Reservation reservation = new Reservation();
 
         System.out.println("Wybierz hotel, w którym chcesz zgłosić rezerwację (wpisz nazwę)");
-        reservation.printHotels(session);
+        HotelService.printHotels(session);
         String hotelName = scanner.nextLine();
-        while (reservation.checkHotelName(hotelName, session) == false){
+
+        while (HotelService.checkHotelName(hotelName, session) == false){
             System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
             hotelName = scanner.nextLine();
         }

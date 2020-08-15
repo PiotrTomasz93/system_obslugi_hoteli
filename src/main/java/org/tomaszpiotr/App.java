@@ -52,6 +52,19 @@ public class App
             if (haslo.equals(systemService.getPassword())){
                 systemService.showOptions();
             }
+            value = scanner.nextLine();
+            switch (value){
+                case "1":
+                    System.out.println("opcja pierwsza"); //TODO
+                    break;
+                case "2":
+                    System.out.println("opcja druga"); // TODO
+                    break;
+                case "3":
+                    Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);
+            }
+
+
         } else {
             System.out.println("\n\n                   KONIEC");
         }

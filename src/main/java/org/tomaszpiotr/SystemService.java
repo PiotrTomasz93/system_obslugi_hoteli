@@ -8,9 +8,12 @@ public class SystemService {
     }
 
     public void showOptions(){
-        System.out.println("1. Wyświetl liczbę wolnych miejsc w hotelach");
-        System.out.println("2. Dodaj hotel");
-        System.out.println("3. Dodaj pokój");
-        System.out.println("4. Dodaj rezerwacje");
+        System.out.println("1. Dodaj hotel");
+        System.out.println("2. Dodaj pokój");
+        System.out.println("3. Dodaj rezerwacje");
     }
+
+
+
+
 }
