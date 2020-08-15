@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 public class Reservation {
 
+    Room room;
     int numberOfPeople;
     LocalDate dateFrom;
     LocalDate dateTo;
-    Room room;
+
 
     public Room getRoom() {
         return room;
@@ -87,6 +88,9 @@ public class Reservation {
             room.setFree(true);
         }
         session.update(room);
+    }
 
+    public void setNumberOfPeople(int numberOfPeople){
+        this.numberOfPeople = numberOfPeople;
     }
 }

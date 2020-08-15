@@ -15,6 +15,8 @@ public class App
 {
     public static void main( String[] args ) {
 
+        checkRoomReservations();
+
         Configuration con = new Configuration().configure().addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class);
 
         SessionFactory sf = con.buildSessionFactory();
@@ -58,6 +60,16 @@ public class App
 
                 reservation.updateRoomAvailability(roomId, session);
                 tx.commit();
+
+                System.out.println("Podaj liczbę osób:");
+                int numberOfPeople = scanner.nextInt();
+                while (numberOfPeople > session.load(Room.class, Short.valueOf(roomId)).getNumberOfBeds()){
+                    System.out.println("Liczba osób przekracza liczbę miejsc w pokoju. Wpisz ponownie:");
+                    numberOfPeople = scanner.nextInt();
+                }
+
+                reservation.setNumberOfPeople(numberOfPeople);
+
             } else {
                 System.out.println("W hotelu " + hotelName + " nie ma wolnych miejsc.");
             }
@@ -85,5 +97,9 @@ public class App
         
 
         System.out.println("\n\n                   KONIEC");
+    }
+
+    public static void checkRoomReservations(){
+
     }
 }
