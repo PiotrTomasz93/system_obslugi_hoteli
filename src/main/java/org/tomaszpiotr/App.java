@@ -99,7 +99,7 @@ public class App
         System.out.println("\n\n                   KONIEC");
     }
 
-    public static void checkRoomReservations(){
+    public static void checkRoomReservations(){ //TODO sprawdzenie dat wszystkich rezerwacji i zaktualizowanie dostępności pokoi
 
     }
 }
