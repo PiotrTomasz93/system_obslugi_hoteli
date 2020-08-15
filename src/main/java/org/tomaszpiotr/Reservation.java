@@ -6,6 +6,8 @@ import org.hibernate.query.Query;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,6 +110,11 @@ public class Reservation {
 
     public void setDateTo(LocalDate dateTo){
         this.dateTo = dateTo;
+    }
+
+    public int calculatePrice(){
+        int days = (int) ChronoUnit.DAYS.between(dateFrom, dateTo);
+        return (int) (numberOfPeople * room.getPrice() * days);
     }
 
 }
