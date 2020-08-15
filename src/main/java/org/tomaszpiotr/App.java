@@ -55,7 +55,7 @@ public class App
             value = scanner.nextLine();
             switch (value){
                 case "1":
-                    System.out.println("opcja pierwsza"); //TODO
+                    HotelFactory.buildHotel();
                     break;
                 case "2":
                     System.out.println("opcja druga"); // TODO
