@@ -21,6 +21,7 @@ public class ReservationFactory {
             System.out.println("Błędna nazwa hotelu. Wpisz ponownie");
             hotelName = scanner.nextLine();
         }
+
         if (reservation.checkFreeRooms(hotelName, session)){
             System.out.println("Wybierz pokój z obecnie dostępnych (wpisz id)");
             reservation.printFreeRooms(hotelName, session);

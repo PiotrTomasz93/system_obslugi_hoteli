@@ -26,8 +26,8 @@ public class App
         Transaction tx = session.beginTransaction();
 
 
-        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
-        dataLoader.loadData();
+//        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
+//        dataLoader.loadData();
 
         System.out.println("Witamy w aplikacji HotelsView. \nWybierz opcję, wpisz odpowiedni numer i zatwierdź klawiszem Enter.");
         System.out.println("1. Rezerwacja pokoju");
@@ -55,10 +55,12 @@ public class App
             value = scanner.nextLine();
             switch (value){
                 case "1":
-                    HotelFactory.buildHotel();
+                    Hotel hotel = HotelFactory.buildHotel();
+                    session.save(hotel);
+                    tx.commit();
                     break;
                 case "2":
-                    System.out.println("opcja druga"); // TODO
+                    System.out.println("opcja druga, do zaimplementowania"); // TODO
                     break;
                 case "3":
                     Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);

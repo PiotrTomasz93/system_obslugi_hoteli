@@ -21,6 +21,7 @@ public class Room {
     }
 
     public Room(short id, Hotel hotel, int numberOfBeds, boolean isFree, double price) {
+
         this.id = id;
         this.hotel = hotel;
         this.numberOfBeds = numberOfBeds;
