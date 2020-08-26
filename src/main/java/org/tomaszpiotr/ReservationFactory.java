@@ -55,7 +55,7 @@ public class ReservationFactory {
             reservation.setDateFrom(dateFrom);
             reservation.setDateTo(dateTo);
 
-            tx = session.beginTransaction();
+            //tx = session.beginTransaction();
             session.save(reservation);
             tx.commit();
 

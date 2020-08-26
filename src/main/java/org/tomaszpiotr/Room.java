@@ -17,7 +17,6 @@ public class Room {
     private double price;
 
     public Room(){
-
     }
 
     public Room(short id, Hotel hotel, int numberOfBeds, boolean isFree, double price) {

@@ -43,9 +43,12 @@ public class App
             value = scanner.nextLine();
         }
 
-        if (value.equals("1")) {
+
+        if (value.equals("1")) { // REZERWACJA POKOJU PRZEZ KLIENTA
             Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);
-        } else if (value.equals("2")){
+
+
+        } else if (value.equals("2")){  // OBSŁUGA SYSTEMU PRZEZ PRACOWNIKA
             SystemService systemService = new SystemService();
             System.out.println("Podaj hasło");
             String haslo = scanner.nextLine();
@@ -60,7 +63,9 @@ public class App
                     tx.commit();
                     break;
                 case "2":
-                    System.out.println("opcja druga, do zaimplementowania"); // TODO
+                    Room room  = RoomFactory.buildRoom(session);
+                    session.save(room);
+                    tx.commit();
                     break;
                 case "3":
                     Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);
