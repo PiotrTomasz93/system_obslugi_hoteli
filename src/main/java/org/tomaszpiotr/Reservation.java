@@ -29,7 +29,13 @@ public class Reservation {
         return room;
     }
 
+    public short getId() {
+        return id;
+    }
 
+    public LocalDate getDateTo() {
+        return dateTo;
+    }
 
     public boolean checkFreeRooms(String hotelName, Session session){
         Query query = session.createQuery("select rooms from Hotel where name = :x");
@@ -101,4 +107,14 @@ public class Reservation {
         return (int) (numberOfPeople * room.getPrice() * days);
     }
 
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", room=" + room +
+                ", numberOfPeople=" + numberOfPeople +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                '}';
+    }
 }

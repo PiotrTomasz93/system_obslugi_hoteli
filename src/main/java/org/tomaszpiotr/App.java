@@ -16,7 +16,7 @@ public class App
 {
     public static void main( String[] args ) {
 
-        checkRoomReservations();
+
 
         Configuration con = new Configuration().configure().addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class).addAnnotatedClass(Reservation.class);
 
@@ -28,6 +28,8 @@ public class App
 
 //        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
 //        dataLoader.loadData();
+
+        checkRoomReservations(session);
 
         System.out.println("Witamy w aplikacji HotelsView. \nWybierz opcję, wpisz odpowiedni numer i zatwierdź klawiszem Enter.");
         System.out.println("1. Rezerwacja pokoju");
@@ -80,7 +82,16 @@ public class App
 
     }
 
-    public static void checkRoomReservations(){ //TODO sprawdzenie dat wszystkich rezerwacji i zaktualizowanie dostępności pokoi
+    public static void checkRoomReservations(Session session){ //TODO sprawdzenie dat wszystkich rezerwacji i zaktualizowanie dostępności pokoi
+        List<Reservation> reservations = ReservationRepository.getAllReservations(session);
+
+        for (Reservation reservation: reservations){
+            if(reservation.getDateTo().isBefore(LocalDate.now())){
+                ReservationRepository.deleteReservation(session, reservation.getId());
+
+            }
+        }
+
 
     }
 }
