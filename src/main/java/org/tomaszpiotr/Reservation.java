@@ -33,6 +33,14 @@ public class Reservation {
         return id;
     }
 
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public LocalDate getDateFrom() {
+        return dateFrom;
+    }
+
     public LocalDate getDateTo() {
         return dateTo;
     }

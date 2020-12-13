@@ -13,6 +13,7 @@
     <property name="hibernate.hbm2ddl.auto">update</property> <!--create - za każdym razem usuwa dane i tworzy na nowo tabele, update aktualizuje tabele, ale nie aktualizuje istniejących rekordów-->
     <property name="show_sql">false</property> <!--pokazuje podczas kompilowania zapytania sql, które idą w tle-->
 
+    <mapping class="org.tomaszpiotr.Hotel" />
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>

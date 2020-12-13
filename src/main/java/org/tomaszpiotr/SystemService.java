@@ -11,6 +11,7 @@ public class SystemService {
         System.out.println("1. Dodaj hotel");
         System.out.println("2. Dodaj pokój");
         System.out.println("3. Dodaj rezerwacje");
+        System.out.println("4. Anuluj rezerwacje");
     }
 
 

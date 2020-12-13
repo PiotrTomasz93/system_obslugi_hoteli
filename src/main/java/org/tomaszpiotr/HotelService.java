@@ -14,12 +14,14 @@ public class HotelService {
         for (Hotel item: hotels){
             System.out.println(item.getName() + " (" + item.getCity() + ")");
         }
-        /*Query query = session.createQuery("select name, city from Hotel");
-        List<Object[]> hotels = (List<Object[]>) query.list();
-        System.out.println("nazwa hotelu (miasto)");
-        for (Object[] item: hotels){
-            System.out.println(item[0] + " (" + item[1] + ")");
-        }*/
+
+//        Query query = session.createQuery("select name, city from Hotel");
+//        List<Object[]> hotels = (List<Object[]>) query.list();
+//        System.out.println("nazwa hotelu (miasto)");
+//        for (Object[] item: hotels){
+//            System.out.println(item[0] + " (" + item[1] + ")");
+//        }
+
     }
 
     public static boolean checkHotelName(String hotelName, Session session){
