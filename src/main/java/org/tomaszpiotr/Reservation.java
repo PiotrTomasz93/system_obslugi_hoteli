@@ -1,6 +1,7 @@
 package org.tomaszpiotr;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl;
 import org.hibernate.query.Query;
 
@@ -95,7 +96,9 @@ public class Reservation {
         } else {
             room.setFree(true);
         }
+        Transaction tx = session.beginTransaction();
         session.update(room);
+        tx.commit();
     }
 
     public void setNumberOfPeople(int numberOfPeople){

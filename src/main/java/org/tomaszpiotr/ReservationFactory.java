@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ReservationFactory {
 
 
-    public static Reservation buildReservation(Scanner scanner, Session session, Transaction tx) {
+    public static Reservation buildReservation(Scanner scanner, Session session) {
         Reservation reservation = new Reservation();
 
         System.out.println("Wybierz hotel, w którym chcesz zgłosić rezerwację (wpisz nazwę)");
@@ -55,7 +55,7 @@ public class ReservationFactory {
             reservation.setDateFrom(dateFrom);
             reservation.setDateTo(dateTo);
 
-            //tx = session.beginTransaction();
+            Transaction tx = session.beginTransaction();
             session.save(reservation);
             tx.commit();
 

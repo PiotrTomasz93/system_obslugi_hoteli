@@ -14,12 +14,12 @@ public class ReservationRepository {
         return reservations;
     }
 
-    public static void deleteReservation(Session session, Short id, Transaction tx){
+    public static void deleteReservation(Session session, Short id){
         Reservation reservation = session.load(Reservation.class, id);
+        Transaction tx = session.beginTransaction();
         session.delete(reservation);
         tx.commit();
         reservation.updateRoomAvailability(Short.toString(reservation.getRoom().getId()), session);
-
 
     }
 }

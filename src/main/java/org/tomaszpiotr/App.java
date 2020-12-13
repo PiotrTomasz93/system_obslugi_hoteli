@@ -20,13 +20,12 @@ public class App
         SessionFactory sf = con.buildSessionFactory();
         Session session =sf.openSession();
 
-        Transaction tx = session.beginTransaction();
 
 
-//        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
+//        DataLoader dataLoader = new DataLoader(session); // w hibernate.cfg.xml zmienic na create
 //        dataLoader.loadData();
 
-        checkRoomReservations(session, tx);
+        checkRoomReservations(session);
 
         System.out.println("Witamy w aplikacji HotelsView. \nWybierz opcję, wpisz odpowiedni numer i zatwierdź klawiszem Enter.");
         System.out.println("1. Rezerwacja pokoju");
@@ -44,7 +43,7 @@ public class App
 
 
         if (value.equals("1")) { // REZERWACJA POKOJU PRZEZ KLIENTA
-            Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);
+            Reservation reservation = ReservationFactory.buildReservation(scanner, session);
 
 
         } else if (value.equals("2")){  // OBSŁUGA SYSTEMU PRZEZ PRACOWNIKA
@@ -55,19 +54,23 @@ public class App
                 systemService.showOptions();
             }
             value = scanner.nextLine();
+
+
             switch (value) {
                 case "1":
-                    Hotel hotel = HotelFactory.buildHotel();
+                    {Hotel hotel = HotelFactory.buildHotel();
+                    Transaction tx = session.beginTransaction();
                     session.save(hotel);
                     tx.commit();
-                    break;
+                    break;}
                 case "2":
-                    Room room = RoomFactory.buildRoom(session);
+                    {Room room = RoomFactory.buildRoom(session);
+                    Transaction tx = session.beginTransaction();
                     session.save(room);
                     tx.commit();
-                    break;
+                    break;}
                 case "3":
-                    Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);
+                    Reservation reservation = ReservationFactory.buildReservation(scanner, session);
                 case "4":
                     ReservationService.printAllReservations(session);
                     System.out.println("Podaj ID rezerwacji do usunięcia:");
@@ -79,7 +82,7 @@ public class App
                         System.out.println("Podano niewłaściwy id rezerwacji. \nPodaj ponownie ID rezerwacji");
                         id = scanner.nextLine();
                     }
-                    ReservationRepository.deleteReservation(session, Short.valueOf(id), tx);
+                    ReservationRepository.deleteReservation(session, Short.valueOf(id));
                 }
 
 
@@ -91,13 +94,12 @@ public class App
 
 }
 
-    public static void checkRoomReservations(Session session, Transaction tx){
+    public static void checkRoomReservations(Session session){
         List<Reservation> reservations = ReservationRepository.getAllReservations(session);
 
         for (Reservation reservation: reservations) {
             if (reservation.getDateTo().isBefore(LocalDate.now())) {
-                ReservationRepository.deleteReservation(session, reservation.getId(), tx);
-
+                ReservationRepository.deleteReservation(session, reservation.getId());
             }
         }
     }

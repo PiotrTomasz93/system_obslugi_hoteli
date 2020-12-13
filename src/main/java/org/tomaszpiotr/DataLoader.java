@@ -11,9 +11,9 @@ public class DataLoader { //TODO zrobić funkcje które będą automatycznie zap
     private Session session;
     private Transaction tx;
 
-    public DataLoader(Session session, Transaction tx) {
+    public DataLoader(Session session) {
         this.session = session;
-        this.tx = tx;
+        this.tx = session.beginTransaction();
     }
 
     public void loadData(){
