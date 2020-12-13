@@ -8,10 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class App
 {
@@ -29,7 +26,7 @@ public class App
 //        DataLoader dataLoader = new DataLoader(session, tx); // w hibernate.cfg.xml zmienic na create
 //        dataLoader.loadData();
 
-        checkRoomReservations(session);
+        checkRoomReservations(session, tx);
 
         System.out.println("Witamy w aplikacji HotelsView. \nWybierz opcję, wpisz odpowiedni numer i zatwierdź klawiszem Enter.");
         System.out.println("1. Rezerwacja pokoju");
@@ -58,14 +55,14 @@ public class App
                 systemService.showOptions();
             }
             value = scanner.nextLine();
-            switch (value){
+            switch (value) {
                 case "1":
                     Hotel hotel = HotelFactory.buildHotel();
                     session.save(hotel);
                     tx.commit();
                     break;
                 case "2":
-                    Room room  = RoomFactory.buildRoom(session);
+                    Room room = RoomFactory.buildRoom(session);
                     session.save(room);
                     tx.commit();
                     break;
@@ -73,7 +70,17 @@ public class App
                     Reservation reservation = ReservationFactory.buildReservation(scanner, session, tx);
                 case "4":
                     ReservationService.printAllReservations(session);
-            }
+                    System.out.println("Podaj ID rezerwacji do usunięcia:");
+
+                    String id = scanner.nextLine();
+//                    boolean x = ReservationRepository.getAllReservations(session).stream().filter(e -> e.getId() == Short.valueOf(id)).findFirst().equals(Optional.empty());
+
+                    while (!ReservationService.checkReservationId(id, session)) {
+                        System.out.println("Podano niewłaściwy id rezerwacji. \nPodaj ponownie ID rezerwacji");
+                        id = scanner.nextLine();
+                    }
+                    ReservationRepository.deleteReservation(session, Short.valueOf(id), tx);
+                }
 
 
         } else {
@@ -82,18 +89,16 @@ public class App
 
         //List<HotelFacilities> fc = Arrays.asList(HotelFacilities.PARKING, HotelFacilities.RESTAURANT);
 
-    }
+}
 
-    public static void checkRoomReservations(Session session){ //TODO sprawdzenie dat wszystkich rezerwacji i zaktualizowanie dostępności pokoi
+    public static void checkRoomReservations(Session session, Transaction tx){
         List<Reservation> reservations = ReservationRepository.getAllReservations(session);
 
-        for (Reservation reservation: reservations){
-            if(reservation.getDateTo().isBefore(LocalDate.now())){
-                ReservationRepository.deleteReservation(session, reservation.getId());
+        for (Reservation reservation: reservations) {
+            if (reservation.getDateTo().isBefore(LocalDate.now())) {
+                ReservationRepository.deleteReservation(session, reservation.getId(), tx);
 
             }
         }
-
-
     }
 }

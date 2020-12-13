@@ -5,7 +5,6 @@ import org.hibernate.query.Query;
 
 import java.awt.desktop.QuitResponse;
 import java.util.List;
-
 public class HotelRepository {
 
     public static List<Hotel> getAllHotels(Session session){
